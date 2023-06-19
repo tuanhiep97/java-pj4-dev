@@ -22,7 +22,7 @@ public class ItemControllerTest {
 
     @Before
     public void setUp() {
-        ItemController itemController = new ItemController();
+        itemController = new ItemController();
         com.example.demo.TestUtils.injectObjects(itemController, "itemRepository", itemRepository);
     }
 

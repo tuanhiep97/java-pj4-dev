@@ -72,11 +72,11 @@ public class UserControllerTest {
 
     @Test
     public void findByUserName() {
-        when(encoder.encode("88")).thenReturn("isHashed");
+        when(encoder.encode("password")).thenReturn("isHashed");
         CreateUserRequest r = new CreateUserRequest();
         r.setUsername(USER_NAME);
-        r.setPassword("88");
-        r.setConfirmPassword("88");
+        r.setPassword("password");
+        r.setConfirmPassword("password");
         final ResponseEntity<User> response = userController.createUser(r);
         User user = response.getBody();
         when(userRepo.findByUsername(USER_NAME)).thenReturn(user);
