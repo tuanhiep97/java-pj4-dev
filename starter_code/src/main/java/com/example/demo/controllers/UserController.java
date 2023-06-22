@@ -43,7 +43,7 @@ public class UserController {
 	
 	@PostMapping("/create")
 	public ResponseEntity<User> createUser(@RequestBody CreateUserRequest createUserRequest) {
-		log.info("UserController.createUser called with username {}", createUserRequest.getUsername());
+		log.info("UserController.createUser - called with username {}", createUserRequest.getUsername());
 		User user = new User();
 		user.setUsername(createUserRequest.getUsername());
 		Cart cart = new Cart();
@@ -51,12 +51,12 @@ public class UserController {
 		user.setCart(cart);
 		if(createUserRequest.getPassword().length()<7 ||
 				!createUserRequest.getPassword().equals(createUserRequest.getConfirmPassword())){
-			log.info("Cannot create user {} because the password is invalid", createUserRequest.getUsername());
+			log.info("UserController.createUser - Cannot create user {} because the password is invalid", createUserRequest.getUsername());
 			return ResponseEntity.badRequest().build();
 		}
 		user.setPassword(bCryptPasswordEncoder.encode(createUserRequest.getPassword()));
 		userRepository.save(user);
-		log.info("New user {} created", createUserRequest.getUsername());
+		log.info("UserController.createUser - New user {} created", createUserRequest.getUsername());
 		return ResponseEntity.ok(user);
 	}
 	
